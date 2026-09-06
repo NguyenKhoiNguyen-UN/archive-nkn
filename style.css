@@ -193,7 +193,13 @@ input:focus-visible {
   font-size: 16px;
 }
 
-.collapse-btn {
+/* ---------- Sort menu ---------- */
+
+.sort {
+  position: relative;
+}
+
+.sort-btn {
   width: 23px;
   height: 23px;
   display: flex;
@@ -202,11 +208,49 @@ input:focus-visible {
   background: transparent;
   border: 0;
   border-radius: 5px;
+  list-style: none;
 }
 
-.collapse-btn svg {
+.sort-btn::-webkit-details-marker {
+  display: none;
+}
+
+.sort-btn svg {
   width: 14px;
   height: 14px;
+}
+
+.sort[open] .sort-btn {
+  background-color: var(--surface-4);
+}
+
+.sort-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  min-width: 140px;
+  padding: 6px;
+  background-color: #1a1a1a;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px #00000080;
+  z-index: 20;
+}
+
+.sort-menu button {
+  display: block;
+  width: 100%;
+  padding: 8px 10px;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.sort-menu button:hover {
+  background-color: var(--surface-4);
 }
 
 /* ---------- File list ---------- */
@@ -273,6 +317,176 @@ input:focus-visible {
   background-color: var(--surface-4);
 }
 
+.file-row[hidden] {
+  display: none !important;
+}
+
+/* Grid view: cards instead of rows */
+.file-list.is-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  padding: 20px var(--gutter);
+}
+
+.file-list.is-grid .file-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  height: auto;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background-color: var(--surface-1);
+}
+
+.file-list.is-grid .file-info {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+}
+
+.file-list.is-grid .file-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.file-list.is-grid .file-name {
+  width: 100%;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.file-list.is-grid .file-size,
+.file-list.is-grid .file-date {
+  text-align: left;
+}
+
+.file-list.is-grid .file-date {
+  display: block;
+}
+
+.file-list.is-grid .file-download {
+  align-self: flex-end;
+  margin-top: -32px;
+}
+
+/* ---------- Hero (Home page) ---------- */
+
+.hero {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 96px var(--gutter) 56px;
+  text-align: center;
+}
+
+.hero-title {
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+
+.hero-text {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-dim);
+  margin-bottom: 28px;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  height: 42px;
+  padding: 0 22px;
+  background-color: var(--text);
+  color: #000000;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: var(--radius);
+}
+
+/* ---------- Features (Home page) ---------- */
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px var(--gutter) 96px;
+}
+
+.feature {
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.feature-icon {
+  width: 22px;
+  height: 22px;
+  margin-bottom: 16px;
+  color: var(--text-dim);
+}
+
+.feature-title {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.feature-text {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-dim);
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px var(--gutter);
+  border-top: 1px solid var(--border);
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-brand .brand-name {
+  font-size: 15px;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-note {
+  width: 100%;
+  font-size: 13px;
+  color: var(--text-dim);
+  order: 3;
+}
+
+@media (min-width: 640px) {
+  .footer-note {
+    width: auto;
+    order: 0;
+    margin-left: auto;
+  }
+}
+
 /* ---------- Responsive ---------- */
 
 /* Tablet: drop the date column, keep it simple */
@@ -283,6 +497,10 @@ input:focus-visible {
 
   .file-date {
     display: none;
+  }
+
+  .features {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -321,5 +539,22 @@ input:focus-visible {
 
   .view-btn span {
     display: none;
+  }
+
+  .hero {
+    padding: 56px 16px 40px;
+  }
+
+  .hero-title {
+    font-size: 26px;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+    padding: 16px 16px 56px;
+  }
+
+  .site-footer {
+    padding: 20px 16px;
   }
 }
