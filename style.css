@@ -146,35 +146,6 @@ input:focus-visible {
   height: 16px;
 }
 
-.view-toggle {
-  display: flex;
-  gap: 9px;
-}
-
-.view-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  height: 28px;
-  padding: 0 12px;
-  background: transparent;
-  border: 0;
-  border-radius: var(--radius);
-  font-weight: 600;
-  font-size: 14px;
-  color: var(--text-dim);
-}
-
-.view-btn svg {
-  width: 16px;
-  height: 16px;
-}
-
-.view-btn.is-active {
-  background-color: var(--surface-4);
-  color: var(--text);
-}
-
 /* ---------- Section heading ---------- */
 
 .section-heading {
@@ -218,39 +189,51 @@ input:focus-visible {
 .sort-btn svg {
   width: 14px;
   height: 14px;
+  transition: transform 0.15s ease;
 }
 
-.sort[open] .sort-btn {
-  background-color: var(--surface-4);
+.sort[open] .sort-btn svg {
+  transform: rotate(180deg);
 }
 
 .sort-menu {
   position: absolute;
-  top: calc(100% + 6px);
+  top: calc(100% + 8px);
   left: 0;
-  min-width: 140px;
+  min-width: 160px;
   padding: 6px;
-  background-color: #1a1a1a;
+  background-color: var(--surface-4);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: 0 8px 24px #00000080;
+  border-radius: 10px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 12px 32px #00000060;
   z-index: 20;
 }
 
 .sort-menu button {
   display: block;
   width: 100%;
-  padding: 8px 10px;
+  padding: 9px 12px;
   text-align: left;
   background: transparent;
   border: 0;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 14px;
   color: var(--text);
 }
 
 .sort-menu button:hover {
-  background-color: var(--surface-4);
+  background-color: var(--surface-1);
+}
+
+/* ---------- List status (loading / empty / error) ---------- */
+
+.list-status {
+  padding: 40px var(--gutter);
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-dim);
 }
 
 /* ---------- File list ---------- */
@@ -319,58 +302,6 @@ input:focus-visible {
 
 .file-row[hidden] {
   display: none !important;
-}
-
-/* Grid view: cards instead of rows */
-.file-list.is-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 16px;
-  padding: 20px var(--gutter);
-}
-
-.file-list.is-grid .file-row {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  height: auto;
-  padding: 16px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background-color: var(--surface-1);
-}
-
-.file-list.is-grid .file-info {
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  width: 100%;
-}
-
-.file-list.is-grid .file-icon {
-  width: 28px;
-  height: 28px;
-}
-
-.file-list.is-grid .file-name {
-  width: 100%;
-  white-space: normal;
-  word-break: break-word;
-}
-
-.file-list.is-grid .file-size,
-.file-list.is-grid .file-date {
-  text-align: left;
-}
-
-.file-list.is-grid .file-date {
-  display: block;
-}
-
-.file-list.is-grid .file-download {
-  align-self: flex-end;
-  margin-top: -32px;
 }
 
 /* ---------- Hero (Home page) ---------- */
@@ -535,10 +466,6 @@ input:focus-visible {
 
   .file-download {
     grid-row: 1 / 3;
-  }
-
-  .view-btn span {
-    display: none;
   }
 
   .hero {

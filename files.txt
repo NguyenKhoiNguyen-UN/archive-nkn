@@ -1,0 +1,19 @@
+# ============================================================
+#  DANH SÁCH FILE — Archive NKN
+#  Mỗi dòng là 1 file. Cú pháp:
+#
+#     Tên file | Dung lượng | Ngày (YYYY-MM-DD) | Link tải
+#
+#  - Dòng bắt đầu bằng # là ghi chú, web bỏ qua, không cần xoá.
+#  - Dòng trống cũng bị bỏ qua.
+#  - Dung lượng viết tự nhiên: 3.33 KB / 12 MB / 1.2 GB / 500 B
+#    (chấm hay phẩy đều được: 3.33 KB hoặc 3,33 KB)
+#  - Ngày bắt buộc theo thứ tự Năm-Tháng-Ngày để sắp xếp đúng.
+#  - Muốn thêm file mới: chỉ cần thêm 1 dòng mới ở bất kỳ đâu
+#    trong danh sách, không cần đúng thứ tự — web tự sắp xếp.
+#  - Không cần dấu chấm phẩy, không cần đóng/mở thẻ gì cả.
+# ============================================================
+
+fileenxoska.bat | 3.33 KB | 2026-09-17 | https://drive.google.com/uc?id=your-file-id
+fileenxoska.bat | 3.33 KB | 2026-09-16 | https://drive.google.com/uc?id=your-file-id
+fileenxoska.bat | 3.33 KB | 2026-09-15 | https://drive.google.com/uc?id=your-file-id

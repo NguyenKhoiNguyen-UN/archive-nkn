@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #333333;
+            --text-sub: #666666;
+            --text-desc: #888888;
+            --logo-filter: brightness(0); /* Ép logo PNG về đen */
+            --logo-shadow: rgba(0, 0, 0, 0.5);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121212;
+                --text-main: #ffffff;
+                --text-sub: #cccccc;
+                --text-desc: #aaaaaa;
+                --logo-filter: brightness(0) invert(1); /* Ép logo PNG về trắng */
+                --logo-shadow: rgba(255, 255, 255, 0.6);
+            }
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: sans-serif;
+            overflow: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        .error-code { font-size: 120px; font-weight: bold; margin: 0; color: var(--text-main); }
+        .error-title { font-size: 24px; margin-bottom: 20px; color: var(--text-sub); }
+        .error-desc { font-size: 16px; color: var(--text-desc); max-width: 500px; margin-bottom: 40px; line-height: 1.5; }
+
+        #back-group {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        #Ellipse_2 {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        #back-group:hover #Ellipse_2 {
+            box-shadow: 0px 0px 5px 1px var(--logo-shadow), 
+                        inset 0px 0px 5px 1px var(--logo-shadow);
+        }
+
+        #Arrow_1 path { fill: var(--text-main); transition: fill 0.3s ease; }
+
+        #back-text {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            color: var(--text-main);
+        }
+
+        #back-group:hover #back-text { opacity: 1; transform: translateY(0); }
+
+        .footer {
+            width: 100%;
+            padding: 40px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            box-sizing: border-box;
+        }
+
+        .footer-logo {
+            width: 28px;
+            height: auto;
+            filter: var(--logo-filter);
+            transition: all 0.3s ease;
+            border-radius: 4px; /* Tránh shadow bị cắt nếu logo hình vuông */
+        }
+
+        .footer-logo:hover {
+            filter: var(--logo-filter) drop-shadow(0px 0px 8px var(--logo-shadow));
+        }
+
+        .brand-name {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .help-link {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 10px;
+            transition: opacity 0.2s;
+        }
+
+        .help-link:hover { opacity: 0.5; }
+
+        @media (max-width: 600px) {
+            .error-code { font-size: 80px; }
+            .footer { gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="error-code">404</div>
+        <div class="error-title">Not Found</div>
+        <div class="error-desc">
+            We cannot provide support, as I am just a language model and lack the ability to process and understand that.
+            <br>It is possible that some technical issues have occurred.
+        </div>
+
+        <div id="back-group" onclick="window.history.back()">
+            <div id="Ellipse_2">
+                <svg id="Arrow_1" width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 16.7279C25.1046 16.7279 26 15.8325 26 14.7279C26 13.6234 25.1046 12.7279 24 12.7279L24 16.7279ZM0.585786 13.3137C-0.195262 14.0948 -0.195262 15.3611 0.585786 16.1421L13.3137 28.8701C14.0948 29.6511 15.3611 29.6511 16.1421 28.8701C16.9232 28.089 16.9232 26.8227 16.1421 26.0416L4.82843 14.7279L16.1421 3.41421C16.9232 2.63316 16.9232 1.36683 16.1421 0.585786C15.3611 -0.195262 14.0948 -0.195262 13.3137 0.585786L0.585786 13.3137ZM24 12.7279L2 12.7279L2 16.7279L24 16.7279L24 12.7279Z"/>
+                </svg>
+            </div>
+            <span id="back-text">Back</span>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <img src="logo.png" alt="Logo" class="footer-logo">
+        <span class="brand-name">FluxUI Studio</span>
+        <a href="#" class="help-link">Help</a>
+    </footer>
+
+</body>
+</html>

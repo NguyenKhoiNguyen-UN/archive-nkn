@@ -20,16 +20,6 @@
     <circle cx="11" cy="11" r="7"/>
     <path d="M21 21l-4.3-4.3"/>
   </symbol>
-  <symbol id="icon-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-    <path d="M8 6h13M8 12h13M8 18h13"/>
-    <path d="M3 6h.01M3 12h.01M3 18h.01"/>
-  </symbol>
-  <symbol id="icon-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-    <rect x="3" y="3" width="7" height="7" rx="1"/>
-    <rect x="14" y="3" width="7" height="7" rx="1"/>
-    <rect x="3" y="14" width="7" height="7" rx="1"/>
-    <rect x="14" y="14" width="7" height="7" rx="1"/>
-  </symbol>
   <symbol id="icon-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
     <path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"/>
     <path d="M14 2v6h6"/>
@@ -39,42 +29,31 @@
     <path d="M7 11l5 5 5-5"/>
     <path d="M5 20h14"/>
   </symbol>
-  <symbol id="icon-sort" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-    <path d="M7 6v12M7 18l-3-3M7 18l3-3"/>
-    <path d="M17 18V6M17 6l-3 3M17 6l3 3"/>
+  <symbol id="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M6 9l6 6 6-6"/>
   </symbol>
 </svg>
 
 <main class="desktop">
 
   <header class="topbar">
-    <a class="brand" href="/" aria-label="Archive NKN — trang chủ">
+    <a class="brand" href="index.html" aria-label="Archive NKN — trang chủ">
       <svg class="brand-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-archive"/></svg>
       <span class="brand-name">Archive NKN</span>
     </a>
     <nav class="nav" aria-label="Điều hướng chính">
-      <a class="nav-link" href="/">Home</a>
+      <a class="nav-link" href="index.html">Home</a>
       <a class="nav-link is-current" href="archive.html" aria-current="page">Archive</a>
     </nav>
   </header>
 
-  <section class="toolbar" aria-label="Tìm kiếm và chế độ xem">
+  <section class="toolbar" aria-label="Tìm kiếm">
     <form class="search" role="search">
       <input class="search-input" type="search" name="search" placeholder="Search" aria-label="Search files">
       <button class="search-btn" type="submit" aria-label="Tìm">
         <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-search"/></svg>
       </button>
     </form>
-    <div class="view-toggle" role="group" aria-label="Kiểu hiển thị">
-      <button class="view-btn" type="button" data-view="list" aria-pressed="false">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-list"/></svg>
-        <span>List view</span>
-      </button>
-      <button class="view-btn is-active" type="button" data-view="grid" aria-pressed="true">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-grid"/></svg>
-        <span>Grid view</span>
-      </button>
-    </div>
   </section>
 
   <section class="section-heading">
@@ -82,7 +61,7 @@
 
     <details class="sort">
       <summary class="sort-btn" aria-label="Sắp xếp danh sách">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-sort"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-chevron"/></svg>
       </summary>
       <ul class="sort-menu" role="menu">
         <li role="menuitem"><button type="button" data-sort="date-desc">Mới nhất</button></li>
@@ -94,63 +73,95 @@
   </section>
 
   <!--
-    ĐỂ THÊM FILE MỚI: copy 1 khối <li class="file-row"> bên dưới, dán vào đầu <ul>, rồi sửa:
-    - file-name: tên file
-    - file-size: chữ hiển thị (VD "3,33 KB")
-    - data-bytes trên <li>: kích thước file tính bằng byte, dùng để sắp xếp Nặng/Nhẹ nhất
-      (VD 1 KB ≈ 1024, 1 MB ≈ 1048576 — không cần chính xác tuyệt đối, ước lượng là đủ)
-    - datetime trên <time>: ngày dạng YYYY-MM-DD, dùng để sắp xếp Mới/Cũ nhất
-    - nội dung trong <time>: ngày hiển thị (VD "17/09/2026")
-    - href trên file-download: link tải file thật
+    ĐỂ THÊM FILE MỚI: mở file "files.txt" (nằm cùng thư mục), thêm 1 dòng theo cú pháp
+    có ghi sẵn trong đó. KHÔNG cần sửa gì trong file HTML này nữa.
   -->
-  <ul class="file-list" id="recent-files" aria-label="Danh sách file gần đây">
-
-    <li class="file-row" data-bytes="3413">
-      <div class="file-info">
-        <svg class="file-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-file"/></svg>
-        <span class="file-name">fileenxoska.bat</span>
-      </div>
-      <span class="file-size">3,33 KB</span>
-      <time class="file-date" datetime="2026-09-17">17/09/2026</time>
-      <a class="file-download" href="#" download aria-label="Tải fileenxoska.bat">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-download"/></svg>
-      </a>
-    </li>
-
-    <li class="file-row" data-bytes="3413">
-      <div class="file-info">
-        <svg class="file-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-file"/></svg>
-        <span class="file-name">fileenxoska.bat</span>
-      </div>
-      <span class="file-size">3,33 KB</span>
-      <time class="file-date" datetime="2026-09-17">17/09/2026</time>
-      <a class="file-download" href="#" download aria-label="Tải fileenxoska.bat">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-download"/></svg>
-      </a>
-    </li>
-
-    <li class="file-row" data-bytes="3413">
-      <div class="file-info">
-        <svg class="file-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-file"/></svg>
-        <span class="file-name">fileenxoska.bat</span>
-      </div>
-      <span class="file-size">3,33 KB</span>
-      <time class="file-date" datetime="2026-09-17">17/09/2026</time>
-      <a class="file-download" href="#" download aria-label="Tải fileenxoska.bat">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-download"/></svg>
-      </a>
-    </li>
-
-  </ul>
+  <ul class="file-list" id="recent-files" aria-label="Danh sách file gần đây"></ul>
+  <p class="list-status" id="list-status" hidden></p>
 
 </main>
 
 <script>
-  // --- Search: lọc file theo tên, gõ tới đâu lọc tới đó ---
+  var fileList = document.getElementById('recent-files');
+  var listStatus = document.getElementById('list-status');
   var searchForm = document.querySelector('.search');
   var searchInput = document.querySelector('.search-input');
-  var fileList = document.getElementById('recent-files');
+  var sortDetails = document.querySelector('.sort');
 
+  var svgFile = '<svg class="file-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-file"/></svg>';
+  var svgDownload = '<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-download"/></svg>';
+
+  // "3.33 KB" / "3,33 KB" / "12 MB" / "1.2 GB" / "500 B" -> số byte
+  function sizeToBytes(sizeText) {
+    var match = sizeText.trim().match(/^([\d.,]+)\s*(B|KB|MB|GB)$/i);
+    if (!match) return 0;
+    var num = parseFloat(match[1].replace(',', '.'));
+    var unit = match[2].toUpperCase();
+    var mult = unit === 'GB' ? 1024 * 1024 * 1024 : unit === 'MB' ? 1024 * 1024 : unit === 'KB' ? 1024 : 1;
+    return Math.round(num * mult);
+  }
+
+  // Đọc files.txt theo cú pháp: Tên | Dung lượng | Ngày | Link
+  function parseFilesTxt(text) {
+    return text.split('\n')
+      .map(function (line) { return line.trim(); })
+      .filter(function (line) { return line && line.indexOf('#') !== 0; })
+      .map(function (line) {
+        var parts = line.split('|').map(function (p) { return p.trim(); });
+        if (parts.length < 4) return null;
+        return { name: parts[0], size: parts[1], date: parts[2], link: parts[3] };
+      })
+      .filter(Boolean);
+  }
+
+  function renderFiles(files) {
+    fileList.innerHTML = '';
+
+    if (files.length === 0) {
+      listStatus.hidden = false;
+      listStatus.textContent = 'Chưa có file nào.';
+      return;
+    }
+
+    listStatus.hidden = true;
+
+    files.forEach(function (file) {
+      var li = document.createElement('li');
+      li.className = 'file-row';
+      li.dataset.bytes = sizeToBytes(file.size);
+      li.innerHTML =
+        '<div class="file-info">' + svgFile +
+          '<span class="file-name">' + file.name + '</span>' +
+        '</div>' +
+        '<span class="file-size">' + file.size + '</span>' +
+        '<time class="file-date" datetime="' + file.date + '">' + formatDate(file.date) + '</time>' +
+        '<a class="file-download" href="' + file.link + '" download aria-label="Tải ' + file.name + '">' + svgDownload + '</a>';
+      fileList.appendChild(li);
+    });
+  }
+
+  // "2026-09-17" -> "17/09/2026"
+  function formatDate(iso) {
+    var parts = iso.split('-');
+    return parts.length === 3 ? parts[2] + '/' + parts[1] + '/' + parts[0] : iso;
+  }
+
+  fetch('files.txt')
+    .then(function (res) {
+      if (!res.ok) throw new Error('not ok');
+      return res.text();
+    })
+    .then(function (text) {
+      var files = parseFilesTxt(text);
+      files.sort(function (a, b) { return b.date.localeCompare(a.date); }); // mặc định: mới nhất trước
+      renderFiles(files);
+    })
+    .catch(function () {
+      listStatus.hidden = false;
+      listStatus.textContent = 'Không tải được danh sách file — trang cần được mở qua server thật (GitHub Pages), không phải mở file trực tiếp trên máy/điện thoại.';
+    });
+
+  // --- Search: lọc file theo tên, gõ tới đâu lọc tới đó ---
   searchForm.addEventListener('submit', function (e) {
     e.preventDefault();
   });
@@ -165,21 +176,7 @@
     });
   });
 
-  // --- List / Grid view: thật sự đổi layout, không chỉ đổi trạng thái nút ---
-  document.querySelectorAll('.view-btn').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      document.querySelectorAll('.view-btn').forEach(function (b) {
-        b.classList.remove('is-active');
-        b.setAttribute('aria-pressed', 'false');
-      });
-      btn.classList.add('is-active');
-      btn.setAttribute('aria-pressed', 'true');
-      fileList.classList.toggle('is-grid', btn.dataset.view === 'grid');
-    });
-  });
-
   // --- Sắp xếp: Mới nhất / Cũ nhất / Nặng nhất / Nhẹ nhất ---
-  var sortDetails = document.querySelector('.sort');
   document.querySelectorAll('[data-sort]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var mode = btn.dataset.sort;
