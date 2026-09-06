@@ -14,7 +14,7 @@
 #  - Không cần dấu chấm phẩy, không cần đóng/mở thẻ gì cả.
 # ============================================================
 
-fileenxoska.bat | 3.33 KB | 2026-09-17 | https://drive.google.com/uc?id=your-file-id
+fileenxoska.bat | 3.33 KB | 2026-09-17 | https://drive.google.com/file/d/1e1mHjVkwWBnRN1QseTgz9vHKFsDE6g6L/view?usp=drive_link
 fileenxoska.bat | 3.33 KB | 2026-09-16 | https://drive.google.com/uc?id=your-file-id
 fileenxoska.bat | 3.33 KB | 2026-09-15 | https://drive.google.com/uc?id=your-file-id
 fileenxoska.bat | 3.33 KB | 2026-09-30 | https://drive.google.com/uc?id=your-file-id
