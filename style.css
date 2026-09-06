@@ -199,42 +199,45 @@ input:focus-visible {
 .sort-menu {
   position: absolute;
   top: calc(100% + 8px);
-  right: 0;
-  left: auto;
+  left: 0;
 
-  width: 160px;
+  min-width: 160px;
   padding: 6px;
   margin: 0;
 
   list-style: none;
 
-  background: rgba(0, 0, 0, 0.20);
+  background: #1a1a1a;
 
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
+  border: 1px solid #4b4b4b;
+  border-radius: 10px;
 
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
-
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 32px #00000080;
 
   z-index: 20;
 }
 
-.sort-menu button { 
-  display: block; 
-  width: 100%; 
-  padding: 9px 12px; 
-  text-align: left; 
-  background: transparent; 
-  border: 0; 
-  border-radius: 6px; 
-  font-size: 14px; 
-  color: var(--text); 
+.sort-menu button {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 9px 12px;
+
+  text-align: left;
+  white-space: nowrap;
+
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+
+  font-size: 14px;
+  color: #fff;
 }
 
+.sort-menu button:hover {
+  background: #ffffff1a;
+}
 .sort-menu button:hover {
   background-color: var(--surface-1);
 }
