@@ -33,6 +33,10 @@
   <symbol id="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
     <path d="M6 9l6 6 6-6"/>
   </symbol>
+  <symbol id="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+    <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/>
+    <circle cx="12" cy="12" r="3"/>
+  </symbol>
 </svg>
 
 <main class="desktop">
@@ -90,6 +94,7 @@
   var sortDetails = document.querySelector('.sort');
 
   var svgFile = '<svg class="file-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-file"/></svg>';
+  var svgEye = '<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-eye"/></svg>';
   var svgDownload = '<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-download"/></svg>';
 
   // "3.33 KB" / "3,33 KB" / "12 MB" / "1.2 GB" / "500 B" -> số byte
@@ -128,18 +133,16 @@
 
     files.forEach(function (file) {
       var li = document.createElement('li');
-      li.className = 'file-row';
+      li.className = file.pass ? 'file-row has-pass' : 'file-row';
       li.dataset.bytes = sizeToBytes(file.size);
       var passHtml = file.pass
-        ? '<button type="button" class="file-pass" data-pass="' + file.pass + '" title="Bấm để copy mật khẩu">Pass: ' + file.pass + '</button>'
+        ? '<button type="button" class="file-pass" data-pass="' + file.pass + '" data-revealed="false" aria-label="Xem mật khẩu">' + svgEye + '</button>'
         : '';
       li.innerHTML =
         '<div class="file-info">' + svgFile +
-          '<div class="file-text">' +
-            '<span class="file-name">' + file.name + '</span>' +
-            passHtml +
-          '</div>' +
+          '<span class="file-name">' + file.name + '</span>' +
         '</div>' +
+        passHtml +
         '<span class="file-size">' + file.size + '</span>' +
         '<time class="file-date" datetime="' + file.date + '">' + formatDate(file.date) + '</time>' +
         '<a class="file-download" href="' + file.link + '" download aria-label="Tải ' + file.name + '">' + svgDownload + '</a>';
@@ -168,14 +171,22 @@
       listStatus.textContent = 'Không tải được danh sách file — trang cần được mở qua server thật (GitHub Pages), không phải mở file trực tiếp trên máy/điện thoại.';
     });
 
-  // --- Bấm vào "Pass: xxxx" để copy mật khẩu ---
+  // --- Bấm "con mắt": lần 1 hiện mật khẩu, lần 2 (khi đã hiện) mới copy ---
   fileList.addEventListener('click', function (e) {
     var btn = e.target.closest('.file-pass');
     if (!btn) return;
+
+    if (btn.dataset.revealed !== 'true') {
+      btn.dataset.revealed = 'true';
+      btn.textContent = btn.dataset.pass;
+      btn.setAttribute('aria-label', 'Bấm để copy mật khẩu');
+      return;
+    }
+
     navigator.clipboard.writeText(btn.dataset.pass).then(function () {
-      var original = btn.textContent;
+      var original = btn.dataset.pass;
       btn.textContent = 'Đã copy!';
-      setTimeout(function () { btn.textContent = original; }, 1200);
+      setTimeout(function () { btn.textContent = original; }, 1000);
     });
   });
 
