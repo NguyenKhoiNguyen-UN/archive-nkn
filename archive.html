@@ -102,7 +102,7 @@
     return Math.round(num * mult);
   }
 
-  // Đọc files.txt theo cú pháp: Tên | Dung lượng | Ngày | Link
+  // Đọc files.txt theo cú pháp: Tên | Dung lượng | Ngày | Link | Mật khẩu (không bắt buộc)
   function parseFilesTxt(text) {
     return text.split('\n')
       .map(function (line) { return line.trim(); })
@@ -110,7 +110,7 @@
       .map(function (line) {
         var parts = line.split('|').map(function (p) { return p.trim(); });
         if (parts.length < 4) return null;
-        return { name: parts[0], size: parts[1], date: parts[2], link: parts[3] };
+        return { name: parts[0], size: parts[1], date: parts[2], link: parts[3], pass: parts[4] || '' };
       })
       .filter(Boolean);
   }
@@ -130,9 +130,15 @@
       var li = document.createElement('li');
       li.className = 'file-row';
       li.dataset.bytes = sizeToBytes(file.size);
+      var passHtml = file.pass
+        ? '<button type="button" class="file-pass" data-pass="' + file.pass + '" title="Bấm để copy mật khẩu">Pass: ' + file.pass + '</button>'
+        : '';
       li.innerHTML =
         '<div class="file-info">' + svgFile +
-          '<span class="file-name">' + file.name + '</span>' +
+          '<div class="file-text">' +
+            '<span class="file-name">' + file.name + '</span>' +
+            passHtml +
+          '</div>' +
         '</div>' +
         '<span class="file-size">' + file.size + '</span>' +
         '<time class="file-date" datetime="' + file.date + '">' + formatDate(file.date) + '</time>' +
@@ -161,6 +167,17 @@
       listStatus.hidden = false;
       listStatus.textContent = 'Không tải được danh sách file — trang cần được mở qua server thật (GitHub Pages), không phải mở file trực tiếp trên máy/điện thoại.';
     });
+
+  // --- Bấm vào "Pass: xxxx" để copy mật khẩu ---
+  fileList.addEventListener('click', function (e) {
+    var btn = e.target.closest('.file-pass');
+    if (!btn) return;
+    navigator.clipboard.writeText(btn.dataset.pass).then(function () {
+      var original = btn.textContent;
+      btn.textContent = 'Đã copy!';
+      setTimeout(function () { btn.textContent = original; }, 1200);
+    });
+  });
 
   // --- Search: lọc file theo tên, gõ tới đâu lọc tới đó ---
   searchForm.addEventListener('submit', function (e) {
